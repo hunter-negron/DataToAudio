@@ -5,6 +5,15 @@
 
 // gcc first_alsa.c -o first_alsa -lasound
 // ./first_alsa default
+
+/*
+quality parameters:
+	format for converting between bitstream and signal
+	sample rate
+latency parameters:
+	amount of data/space between interrupts
+	hardware buffer size
+*/
 	      
 int main (int argc, char *argv[])
 {
@@ -15,9 +24,9 @@ int main (int argc, char *argv[])
 	snd_pcm_hw_params_t *hw_params;
 
 	/* setup */
-	if ((err = snd_pcm_open (&playback_handle, argv[1], SND_PCM_STREAM_PLAYBACK, 0)) < 0) {
+	if ((err = snd_pcm_open (&playback_handle, "default", SND_PCM_STREAM_PLAYBACK, 0)) < 0) {
 		fprintf (stderr, "cannot open audio device %s (%s)\n", 
-			 argv[1],
+			 "default",
 			 snd_strerror (err));
 		exit (1);
 	}
@@ -46,8 +55,8 @@ int main (int argc, char *argv[])
 		exit (1);
 	}
 
-	int val = 44100;
-	if ((err = snd_pcm_hw_params_set_rate_near (playback_handle, hw_params, &val, 0)) < 0) {
+	int SAMPLE_RATE = 44100;
+	if ((err = snd_pcm_hw_params_set_rate_near (playback_handle, hw_params, &SAMPLE_RATE, 0)) < 0) {
 		fprintf (stderr, "cannot set sample rate (%s)\n",
 			 snd_strerror (err));
 		exit (1);
@@ -72,6 +81,7 @@ int main (int argc, char *argv[])
 			 snd_strerror (err));
 		exit (1);
 	}
+	/* end setup */
 	
 	for(int i1 = 100, i2 = 200; i1 < 200; i1++, i2--) {
 		buf[i1-100] = i1;
