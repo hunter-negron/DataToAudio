@@ -3,7 +3,7 @@ Translates a file of data into an audio file suitable for writing to a data cass
 
 ## How to compile
 ```
-$ gcc first_alsa.c -o first_alsa -lasound -lm
+$ gcc first_alsa.c -o first_alsa -lasound
 $ ./first_alsa default
 ```
 

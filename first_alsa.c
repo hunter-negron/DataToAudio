@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include <stdlib.h>
+//#include <stdlib.h>
 #include <alsa/asoundlib.h>
-#include <math.h>
+//#include <math.h>
 
 // gcc first_alsa.c -o first_alsa -lasound
 // ./first_alsa default
