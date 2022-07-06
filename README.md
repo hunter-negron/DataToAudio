@@ -1,6 +1,8 @@
 # DataToAudio
 Translates a file of data into an audio file suitable for writing to a data cassette.
 
+`first_wav.c` creates a wav file from scratch.
+
 ## How to compile
 ```
 $ gcc first_alsa.c -o first_alsa -lasound
